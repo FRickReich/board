@@ -1,0 +1,14 @@
+{
+    "verbose": false,
+    "watch": [
+        "./src/**/*.js",
+        "./src/**/*.json",
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.css",
+        "./src/**/*.scss",
+        "./src/**/*.sass"
+    ],
+    "exec": "npm run build:prod && npm run start:prod",
+    "ext": "js json ts tsx css scss sass"
+}

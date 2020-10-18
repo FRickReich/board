@@ -1,0 +1,45 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+        "no-empty": true
+    },
+    "rules": {
+        "import-spacing": true,
+        "indent": [true, "spaces", 4],
+        "newline-before-return": true,
+        "no-consecutive-blank-lines": [true, 1],
+        "no-irregular-whitespace": true,
+        "no-trailing-whitespace": true,
+        "number-literal-format": true,
+        "quotemark": [true, "single", "jsx-double"],
+        "semicolon": [true, "always"],
+        "arrow-return-shorthand": true,
+        "binary-expression-operand-order": true,
+        "no-console": false,
+        "no-string-literal": false,
+        "prefer-const": true,
+        "no-any": true,
+        "class-name": true,
+        "eofline": true,
+        "interface-name": [true, "always-prefix"],
+        "return-undefined": true,
+        "comment-format": {
+            "options": [
+                "check-space"
+            ]
+        },
+        "prefer-for-of": true,
+        "no-empty": true,
+        "variable-name": {
+            "options": [
+                "ban-keywords",
+                "check-format",
+                "allow-pascal-case"
+            ]
+        }
+    },
+    "rulesDirectory": []
+}
