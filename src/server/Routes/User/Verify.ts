@@ -1,16 +1,7 @@
 import { Request, Response } from 'express';
 import { getCleanUser } from '../../utils';
 import jwt from 'jsonwebtoken';
-
-const mockUser =
-{
-    _id: '12345',
-    password: 'test',
-    name: 'F. Rick Reich',
-    email: 'test@test.com',
-    username: 'frickreich',
-    isAdmin: true
-};
+import User, { IUser } from '../../Models/User';
 
 export const userVerifyRoute = (req: Request, res: Response) =>
 {
@@ -24,7 +15,7 @@ export const userVerifyRoute = (req: Request, res: Response) =>
         });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET || 'secret', (err, user) =>
+    jwt.verify(token, process.env.JWT_SECRET || 'secret', (err, checkUser) =>
     {
         if (err)
         {
@@ -34,16 +25,28 @@ export const userVerifyRoute = (req: Request, res: Response) =>
             });
         }
 
-        if (user._id !== mockUser._id)
+        User.findOne({ email: checkUser.email }, (err: Error, user: IUser) =>
         {
-            return res.status(401).json({
-                error: true,
-                message: 'Invalid user.'
-            });
-        }
+            if (err)
+            {
+                return res.status(401).json({
+                    success: false,
+                    error: true,
+                    message: 'Error: server error'
+                });
+            }
 
-        const userObj = getCleanUser(mockUser);
+            if(checkUser.email !== user.email)
+            {
+                return res.status(401).json({
+                    error: true,
+                    message: 'Invalid user.'
+                });
+            }
 
-        return res.json({ user: userObj, token });
+            const userObj = getCleanUser(user);
+
+            return res.json({ user: userObj, token });
+        });
     });
 };

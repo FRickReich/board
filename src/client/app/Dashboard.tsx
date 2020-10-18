@@ -26,7 +26,7 @@ class Dashboard extends Component<MyProps, MyState>
 
         return(
             <Layout>
-                Welcome {user.name}
+                Welcome {user.email}
             </Layout>
         );
     }
