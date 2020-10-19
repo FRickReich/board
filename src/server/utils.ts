@@ -6,9 +6,8 @@ export const generateToken = (user) => {
     const u = {
         _id: user._id,
         email: user.email,
-        name: user.name,
-        username: user.username,
-        isAdmin: user.isAdmin
+        profile: user.profile,
+        role: user.settings.isAdmin ? 'admin' : user.settings.isModerator ? 'moderator' : 'member'
     };
 
     return jwt.sign(u, process.env.JWT_SECRET || 'secret', {
@@ -22,8 +21,7 @@ export const getCleanUser = (user) => {
     return {
         _id: user._id,
         email: user.email,
-        name: user.name,
-        username: user.username,
-        isAdmin: user.isAdmin
+        profile: user.profile,
+        role: user.settings.isAdmin ? 'admin' : user.settings.isModerator ? 'moderator' : 'member'
     };
 };
