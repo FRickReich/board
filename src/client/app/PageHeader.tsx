@@ -18,6 +18,7 @@ const PageHeader = ({ history }) =>
 
             <ul className="header">
                 <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+                <li><NavLink exact activeClassName="active" to="/board">Board</NavLink></li>
                 {
                     token ?
                     (
@@ -26,7 +27,7 @@ const PageHeader = ({ history }) =>
                             <li><NavLink to="/login" onClick={() => handleLogout()}>Logout</NavLink></li>
                             {
                                 user &&
-                                <li><NavLink to={`/user/profile/${user._id}`}>{ user.profile.userName }</NavLink></li>
+                                <li><NavLink to={`/user/profile/${user.profile.userName}`}>{ user.profile.userName }</NavLink></li>
                             }
                         </>
                     ) : (

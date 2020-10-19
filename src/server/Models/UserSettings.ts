@@ -7,6 +7,8 @@ export interface IUserSetting extends Document
     isMember: boolean;
     isModerator: boolean;
     isAdmin: boolean;
+
+    isEmailHidden: boolean;
 }
 
 const schema: Schema = new Schema({
@@ -25,6 +27,11 @@ const schema: Schema = new Schema({
         type: Boolean,
         default: false
     },
+    isEmailHidden:
+    {
+        type: Boolean,
+        default: true
+    }
 
 });
 

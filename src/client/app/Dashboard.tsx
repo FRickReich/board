@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { getUser } from './Utils/Common';
-import { withRouter } from 'react-router-dom';
 import { Layout } from './Layout';
+import { getUser } from './Utils/Common';
 
 type MyProps = {};
 type MyState = {
@@ -35,4 +34,4 @@ class Dashboard extends Component<MyProps, MyState>
     }
 }
 
-export default withRouter(Dashboard);
+export default Dashboard;

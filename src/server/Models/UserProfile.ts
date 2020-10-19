@@ -18,6 +18,9 @@ const schema: Schema = new Schema({
     lastName: {
         type: String
     },
+    /**
+     * @todo Change userName to username
+     */
     userName:
     {
         type: String

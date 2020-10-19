@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import moment from 'moment';
 import { Layout } from './Layout';
 
 type ComponentProps =
@@ -8,7 +10,9 @@ type ComponentProps =
 
 type ComponentStates =
 {
-    
+    isLoading: boolean,
+    userData: object,
+    error: string
 };
 
 class Profile extends Component<ComponentProps, ComponentStates>
@@ -18,17 +22,56 @@ class Profile extends Component<ComponentProps, ComponentStates>
         super(props);
     }
 
+    state =
+    {
+        isLoading: true,
+        userData: null,
+        error: null
+    };
+
     componentDidMount = () =>
     {
-        console.log(this.props.match.params);
+        const { match } = this.props;
+        const username : string = match.params.userId.toString();
+
+        axios.get(`http://localhost:3000/api/user/get/username/${username}`).then((response: object) =>
+        {
+            this.setState({
+                isLoading: false,
+                userData: response['data']['user']
+            });
+        }).catch(error =>
+        {
+            this.setState({ isLoading: false, error: 'user not found' });
+        });
     }
 
     render = () =>
     {
         const { match } = this.props;
+        const { isLoading, userData } = this.state;
 
         return(
-            <Layout>Profile...{ match.params.userId }</Layout>
+            <Layout>
+            {
+                isLoading && isLoading ?
+                (
+                    <p>Loading...</p>
+                )
+                :
+                (
+                    <>
+                        <p><b>username:</b> { userData.username }</p>
+                        {
+                            userData.email !== 'hidden' &&
+                            <p><b>email:</b> { userData.email } </p>
+                        }
+                        <p><b>member since:</b> { moment(userData.signUpDate).fromNow() }</p>
+                        <p><b>role:</b> { userData.role }</p>
+                    </>
+                )
+            }
+            </Layout>
         );
     }
 }
