@@ -7,6 +7,8 @@ import { Home } from './Home';
 import { PrivateRoute } from './Utils/PrivateRoute';
 import { PublicRoute } from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
+import Register from './Register';
+import { Profile } from './Profile';
 
 export const App = () =>
 {
@@ -40,8 +42,10 @@ export const App = () =>
                     <div className="content">
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <PublicRoute path="/register" component={Register} />
                             <PublicRoute path="/login" component={Login} />
                             <PrivateRoute path="/dashboard" component={Dashboard} />
+                            <PrivateRoute path="/user/profile/:userId" component={Profile} />
                         </Switch>
                     </div>
             </BrowserRouter>

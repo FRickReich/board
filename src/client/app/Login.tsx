@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect, NavLink } from 'react-router-dom';
 import { setUserSession } from './Utils/Common';
 import axios from 'axios';
 import { Layout } from './Layout';
@@ -32,7 +32,7 @@ class Login extends Component<MyProps, MyState>
         error: null
     };
 
-    handleLogin()
+    handleLoginButton = () =>
     {
         const { email, password } = this.state;
 
@@ -67,7 +67,7 @@ class Login extends Component<MyProps, MyState>
         });
     }
 
-    render()
+    render = () =>
     {
         const { email, password, error, loading } = this.state;
 
@@ -77,7 +77,7 @@ class Login extends Component<MyProps, MyState>
                 <br />
                 <br />
                 <div>
-                    Username
+                    Email
                     <br />
                     <input
                         type="email"
@@ -92,7 +92,7 @@ class Login extends Component<MyProps, MyState>
                     Password
                     <br />
                     <input
-                        type="text"
+                        type="password"
                         placeholder="Password"
                         name="password"
                         value={password}
@@ -103,7 +103,8 @@ class Login extends Component<MyProps, MyState>
                     error && <><small style={{ color: 'red' }}>{error}</small><br /></>
                 }
                 <br />
-                <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={this.handleLogin.bind(this)} disabled={loading} /><br />
+                <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={this.handleLoginButton.bind(this)} disabled={loading} /><br />
+                <p>Want to create a new account? <NavLink to="/register">Register here!</NavLink></p>
             </Layout>
         );
     }

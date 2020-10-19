@@ -73,30 +73,34 @@ class App
         });
     }
 
-setApiRoutes = () =>
-{
-    router(this.app);
-}
-
-setReactRoutes = () =>
-{
-    this.app.get('*', (req, res) =>
+    setApiRoutes = () =>
     {
-        const content = fs.readFileSync(`${path.resolve(__dirname, this.buildPath + '/index.html')}`).toString();
+        router(this.app);
+    }
 
-        res.set('content-type', 'text/html');
-        res.send(content);
-        res.end();
-    });
-}
-
-start = () =>
-{
-    this.app.listen(this.servicePort, () =>
+    setReactRoutes = () =>
     {
-        console.log(`Service '${this.serviceName}' listening at http://localhost:${this.servicePort}`);
-    });
-}
+        /**
+         * @todo Fix path issue on reload
+         * @body Reloading a page with a path containing more than a depth of one (i.e.: '/user/profile/') does not work and throw a console error.
+         */
+        this.app.get('/*', (req, res) =>
+        {
+            const content = fs.readFileSync(`${path.resolve(__dirname, this.buildPath + '/index.html')}`).toString();
+
+            res.set('content-type', 'text/html');
+            res.send(content);
+            res.end();
+        });
+    }
+
+    start = () =>
+    {
+        this.app.listen(this.servicePort, () =>
+        {
+            console.log(`Service '${this.serviceName}' listening at http://localhost:${this.servicePort}`);
+        });
+    }
 }
 
 export default App;

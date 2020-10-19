@@ -26,7 +26,10 @@ class Dashboard extends Component<MyProps, MyState>
 
         return(
             <Layout>
-                Welcome {user.email}
+                Dashboard...
+                {user.role === "member" && <p>Role: Member</p>}
+                {user.role === "moderator" && <p>Role: Moderator</p>}
+                {user.role === "admin" && <p>Role: Admin</p>}
             </Layout>
         );
     }

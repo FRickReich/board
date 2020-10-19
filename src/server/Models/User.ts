@@ -3,8 +3,8 @@ import Schema = mongoose.Schema;
 import Document = mongoose.Document;
 // import ObjectId = mongoose.Schema.Types.ObjectId;
 import bcrypt from 'bcrypt';
-// import UserProfile, { IUserProfile } from './UserProfile';
-// import UserSetting, { IUserSetting } from './UserSettings';
+import UserProfile, { IUserProfile } from './UserProfile';
+import UserSetting, { IUserSetting } from './UserSettings';
 
 export interface IUser extends Document
 {
@@ -14,8 +14,8 @@ export interface IUser extends Document
     isVerified: boolean;
     signUpDate: Date;
     lastLoginDate: Date;
-    // profile: IUserProfile;
-    // settings: IUserSetting;
+    profile: IUserProfile;
+    settings: IUserSetting;
     generateHash(password: string): string;
 }
 
@@ -45,8 +45,8 @@ const schema: Schema = new Schema({
     lastLoginDate: {
         type: Date
     },
-    // profile: UserProfile.schema,
-    // settings: UserSetting.schema
+    profile: UserProfile.schema,
+    settings: UserSetting.schema
 }).post('save', () => {
     console.log('user profile edited');
 });

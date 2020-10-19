@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
-import { getToken, removeUserSession } from './Utils/Common';
+import { getToken, getUser, removeUserSession } from './Utils/Common';
 
 const PageHeader = ({ history }) =>
 {
     const token = getToken() ? true : false;
+    const user = getUser();
 
     const handleLogout = () =>
     {
@@ -23,9 +24,16 @@ const PageHeader = ({ history }) =>
                         <>
                             <li><NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink></li>
                             <li><NavLink to="/login" onClick={() => handleLogout()}>Logout</NavLink></li>
+                            {
+                                user &&
+                                <li><NavLink to={`/user/profile/${user._id}`}>{ user.profile.userName }</NavLink></li>
+                            }
                         </>
                     ) : (
+                        <>
+                        <li><NavLink activeClassName="active" to="/register" >Register</NavLink></li>
                         <li><NavLink activeClassName="active" to="/login">Login</NavLink></li>
+                        </>
                     )
                 }
             </ul>
