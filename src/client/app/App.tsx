@@ -9,7 +9,7 @@ import { PublicRoute } from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
 import Register from './Register';
 import { Profile } from './Profile';
-import { Board } from './Board';
+import { BoardIndex } from './Board/BoardIndex';
 
 export const App = () =>
 {
@@ -43,7 +43,7 @@ export const App = () =>
                     <div className="content">
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <Route exact path="/board" component={Board} />
+                            <Route exact path="/board" component={BoardIndex} />
                             <PublicRoute path="/register" component={Register} />
                             <PublicRoute path="/login" component={Login} />
                             <PrivateRoute path="/dashboard" component={Dashboard} />
