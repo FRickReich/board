@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout } from './Layout';
-import { getUser } from './Utils/Common';
+import { Layout } from '../Layout/Main';
+import { getUser } from '../Utils/Common';
 
 type MyProps = {};
 type MyState = {

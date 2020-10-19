@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
-import { getToken, getUser, removeUserSession } from './Utils/Common';
+import { getToken, getUser, removeUserSession } from '../Utils/Common';
 
 const PageHeader = ({ history }) =>
 {

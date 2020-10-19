@@ -1,6 +1,6 @@
 import React from 'react';
-import { Layout } from './Layout';
-import { getToken } from './Utils/Common';
+import { Layout } from '../Layout/Main';
+import { getToken } from '../Utils/Common';
 
 const Home = () =>
 {

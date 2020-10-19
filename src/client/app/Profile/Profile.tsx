@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Layout } from './Layout';
+import { Layout } from '../Layout/Main';
 
 type ComponentProps =
 {

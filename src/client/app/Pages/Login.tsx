@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect, NavLink } from 'react-router-dom';
-import { setUserSession } from './Utils/Common';
+import { setUserSession } from '../Utils/Common';
 import axios from 'axios';
-import { Layout } from './Layout';
+import { Layout } from '../Layout/Main';
 
 type MyProps =
 {

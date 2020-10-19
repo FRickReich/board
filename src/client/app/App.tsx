@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import Login from './Login';
-import Dashboard from './Dashboard';
-import { Home } from './Home';
+import Login from './Pages/Login';
+import Dashboard from './Dashboard/Dashboard';
+import { Home } from './Pages/Home';
 import { PrivateRoute } from './Utils/PrivateRoute';
 import { PublicRoute } from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
-import Register from './Register';
-import { Profile } from './Profile';
+import Register from './Pages/Register';
+import { Profile } from './Profile/Profile';
 import { BoardIndex } from './Board/BoardIndex';
 
 export const App = () =>

@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Layout } from './Layout';
+import { Layout } from '../Layout/Main';
 import { response } from 'express';
 
 type MyProps =
