@@ -53,7 +53,7 @@ export default class Register extends Component<MyProps, MyState>
             this.setState({
                 loading: true
             }, () => {
-                axios.post('http://localhost:3000/api/user/register', { email, password }).then(response =>
+                axios.post('http://localhost:3000/api/user/register', { email, password }).then(() =>
                 {
                     this.setState({
                         success: true,
