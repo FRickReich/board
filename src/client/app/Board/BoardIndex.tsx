@@ -6,7 +6,7 @@ const BoardIndex = () =>
 {
     return(
         <Layout>
-            <h1>Board Index</h1>
+            <h2>Board Index</h2>
 
             <AdminRoleComponent><p>Admin Boards View</p></AdminRoleComponent>
             <ModeratorRoleComponent><p>Moderator Board View</p></ModeratorRoleComponent>

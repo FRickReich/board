@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { getToken, getUser, removeUserSession } from '../Utils/Common';
 
-const PageHeader = ({ history }) =>
+const PageHeader = ({ history, title }) =>
 {
     const token = getToken() ? true : false;
     const user = getUser();
@@ -15,7 +15,7 @@ const PageHeader = ({ history }) =>
 
     return(
         <div>
-
+            <h1>{title}</h1>
             <ul className="header">
                 <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
                 <li><NavLink exact activeClassName="active" to="/board">Board</NavLink></li>
