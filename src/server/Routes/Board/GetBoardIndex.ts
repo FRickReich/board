@@ -15,12 +15,21 @@ export const getBoardIndex = (req: Request, res: Response)  =>
                 [
                     {
                         path: 'authorId',
-                        select: 'profile.userName _id'
+                        select: 'profile.userName _id slug'
                     },
                     {
                         path: 'posts',
-                        populate: 'authorId',
-                        select: 'profile.userName _id'
+                        populate:
+                        [
+                            {
+                                path: 'authorId',
+                                select: 'profile.userName _id updatedAt slug'
+                            },
+                            {
+                                path: 'parent',
+                                select: '_id updatedAt title slug'
+                            }
+                        ]
                     }
                 ]
         }}})
