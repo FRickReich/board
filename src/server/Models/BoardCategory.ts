@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import BoardSubCategory, { IBoardSubCategory } from './BoardSubCategory';
 import Schema = mongoose.Schema;
 import Document = mongoose.Document;
 
 export interface IBoardCategory extends Document
 {
     title: string;
-    subCategories: IBoardSubCategory[];
+    parent: Schema.Types.ObjectId;
+    subCategories: Schema.Types.ObjectId[];
 }
 
 const schema: Schema = new Schema({
@@ -16,7 +16,8 @@ const schema: Schema = new Schema({
         required: true,
         unique: true
     },
-    subCategories: Array(BoardSubCategory)
-});
+    parent: { type: Schema.Types.ObjectId, ref: 'Board' },
+    subCategories: [{ type: Schema.Types.ObjectId, ref: 'BoardSubCategory' }],
+}, { timestamps: true });
 
 export default mongoose.model<IBoardCategory>('BoardCategory', schema, 'BoardCategories', true);

@@ -1,13 +1,12 @@
 import mongoose from 'mongoose';
 import Schema = mongoose.Schema;
 import Document = mongoose.Document;
-import bcrypt from 'bcrypt';
-import BoardCategory, { IBoardCategory } from './BoardCategory';
 
 export interface IBoard extends Document
 {
     title: string;
-    categories: IBoardCategory[];
+    categories: Schema.Types.ObjectId[];
+    adminUser: Schema.Types.ObjectId;
 }
 
 const schema: Schema = new Schema({
@@ -17,13 +16,8 @@ const schema: Schema = new Schema({
         required: true,
         unique: true
     },
-    categories:
-    {
-        type: Array(BoardCategory),
-        default: new BoardCategory({ title: 'General Discussion' })
-    }
-}).post('save', () => {
-    console.log('user profile edited');
-});
+    categories: [{ type: Schema.Types.ObjectId, ref: 'BoardCategory' }],
+    adminUser: { type: Schema.Types.ObjectId, ref: 'User' }
+}, { timestamps: true }).post('save', () => {});
 
 export default mongoose.model<IBoard>('Board', schema, 'Boards', true);

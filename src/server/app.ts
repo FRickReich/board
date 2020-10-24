@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import express, { Request, Response } from 'express';
+import initialSetup from './setup';
 import path from 'path';
 import fs from 'fs';
 import cors from 'cors';
@@ -22,7 +23,7 @@ class App
         this.serviceName = process.env.SERVICE_NAME || 'template';
         this.servicePort = Number(process.env.SERVICE_PORT) || 3000;
         this.buildPath = process.env.BUILD_PATH || './../build/';
-        this.database = process.env.DB_PATH || 'mongodb://207.154.219.225:27017/board';
+        this.database = process.env.DB_PATH || 'mongodb://board:test@207.154.219.225:27017/board';
         this.jwtSecret = process.env.JWT_SECRET || 'secret';
     }
 
@@ -71,6 +72,8 @@ class App
             useUnifiedTopology: true,
             useFindAndModify: false
         });
+
+        initialSetup();
     }
 
     setApiRoutes = () =>
