@@ -11,6 +11,8 @@ import Register from './Pages/Register';
 import { Profile } from './Profile/Profile';
 import { BoardIndex } from './Board/BoardIndex';
 
+import './App.scss';
+
 export const App = () =>
 {
     const [authLoading, setAuthLoading] = useState(true);
