@@ -7,6 +7,7 @@ export interface IBoardCategory extends Document
     title: string;
     parent: Schema.Types.ObjectId;
     subCategories: Schema.Types.ObjectId[];
+    slug: string;
 }
 
 const schema: Schema = new Schema({
@@ -18,6 +19,11 @@ const schema: Schema = new Schema({
     },
     parent: { type: Schema.Types.ObjectId, ref: 'Board' },
     subCategories: [{ type: Schema.Types.ObjectId, ref: 'BoardSubCategory' }],
+    slug:
+    {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true });
 
 export default mongoose.model<IBoardCategory>('BoardCategory', schema, 'BoardCategories', true);

@@ -16,6 +16,7 @@ export interface IUser extends Document
     lastLoginDate: Date;
     profile: IUserProfile;
     settings: IUserSetting;
+    slug: string;
     generateHash(password: string): string;
 }
 
@@ -46,7 +47,12 @@ const schema: Schema = new Schema({
         type: Date
     },
     profile: UserProfile.schema,
-    settings: UserSetting.schema
+    settings: UserSetting.schema,
+    slug:
+    {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true }).post('save', () => {
     console.log('user profile edited');
 });
