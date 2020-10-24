@@ -1,10 +1,11 @@
 import Board from './Models/Board';
 import BoardCategory from './Models/BoardCategory';
 import BoardSubCategory from './Models/BoardSubCategory';
-import BoardPost from './Models/Post';
-import BoardThread from './Models/Thread';
+import BoardPost from './Models/BoardPost';
+import BoardThread from './Models/BoardThread';
 
 import { createNewUser } from './Utils/CreateNewUser';
+import { SlugifyString } from './Utils/SlugifyString';
 
 const initialSetup = () =>
 {
@@ -31,15 +32,18 @@ const initialSetup = () =>
                     newCategory.title = 'General Discussion';
                     newCategory.parent = newBoard._id;
                     newCategory.subCategories = newSubCategory._id;
+                    newCategory.slug = SlugifyString('General Discussion');
 
                     newSubCategory.title = 'Off-Topic Discussion';
                     newSubCategory.parent = newCategory._id;
                     newSubCategory.threads = newThread._id;
+                    newSubCategory.slug = SlugifyString('Off-Topic Discussion');
 
                     newThread.title = 'Welcome';
                     newThread.authorId = newUser._id;
                     newThread.parent = newSubCategory._id;
                     newThread.posts = newPost._id;
+                    newThread.slug = SlugifyString('Welcome');
 
                     newPost.body = 'Hello World!';
                     newPost.authorId = newUser._id;
