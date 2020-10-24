@@ -1,137 +1,100 @@
-import { Link, NavLink } from 'react-router-dom';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { Layout } from '../Layout/Main';
-import { response } from 'express';
 
-type MyProps =
+export const Register = () =>
 {
-    history: any
-};
+    const [ loading, setLoading ] = useState<boolean>(false);
+    const [ success, setSuccess ] = useState<boolean>(false);
+    const [ email, setEmail ] = useState<string>(null);
+    const [ password, setPassword ] = useState<string>(null);
+    const [ passwordValidation, setPasswordValidation ] = useState<string>(null);
+    const [ errorMessage, setErrorMessage ] = useState<string>(null);
 
-type MyState =
-{
-    error: string,
-    success: boolean,
-    loading: boolean,
-    email: string,
-    password: string,
-    passwordValidation: string
-};
+    const handleEmailChange = event => setEmail(event.target.value);
+    const handlePasswordChange = event => setPassword(event.target.value);
+    const handlePasswordValidationChange = event => setPasswordValidation(event.target.value);
 
-export default class Register extends Component<MyProps, MyState>
-{
-    constructor(props)
+    const handleRegisterButton = () =>
     {
-        super(props);
-    }
+        setLoading(true);
 
-    state = {
-        error: null,
-        success: false,
-        loading: false,
-        email: '',
-        password: '',
-        passwordValidation: ''
-    };
-
-    handleChange = (evt) =>
-    {
-        const value = evt.target.value;
-
-        this.setState({
-            ...this.state,
-            [evt.target.name]: value
-        });
-    }
-
-    handleRegisterButton = () =>
-    {
-        const { email, password, passwordValidation } = this.state;
-
-        if (password === '' || password === passwordValidation) {
-            this.setState({
-                loading: true
-            }, () => {
-                axios.post('http://localhost:3000/api/user/register', { email, password }).then(() =>
-                {
-                    this.setState({
-                        success: true,
-                        email: '',
-                        password: ''
-                    });
-                }).catch(error => {
-                    this.setState({
-                        error
-                    });
-                });
-            });
-        } else {
-            this.setState({
-                error: 'Passwords did not match!'
+        if (password === '' || password === passwordValidation)
+        {
+            axios.post('http://localhost:3000/api/user/register', { email, password }).then(() =>
+            {
+                setSuccess(true);
+                setEmail(null)
+                setPassword(null);
+                setPasswordValidation(null);
+                setLoading(false);
+            }).catch(error => {
+                setErrorMessage(error.response.status === 401 ? error.response.data.message : 'Something went wrong. Please try again later.');
+                setLoading(false);
             });
         }
-    }
+        else
+        {
+            setErrorMessage('Passwords did not match!');
+            setLoading(false);
+        }
+    };
 
-    render = () =>
-    {
-        const { error, success, email, password, passwordValidation, loading } = this.state;
-
-        return(
-            <Layout>
-                Register
+    return(
+        <Layout>
+            Register
+            <br />
+            <br />
+            <div>
+                Email
                 <br />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+            </div>
+            <div style={{ marginTop: 10 }}>
+                Password
                 <br />
-                <div>
-                    Email
-                    <br />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
-                        value={email}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                    Password
-                    <br />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                    Repeat Password
-                    <br />
-                    <input
-                        type="password"
-                        placeholder="Repeat Password"
-                        name="passwordValidation"
-                        value={passwordValidation}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                </div>
-                {
-                    error && <><small style={{ color: 'red' }}>{error}</small><br /></>
-                }
-                {
-                    success && <><small style={{ color: 'green' }}>
-                        Registration Successful.
-                        <NavLink exact to="/">
-                            Back to Homepage
-                        </NavLink>
-                    </small><br /></>
-                }
+                <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+            </div>
+            <div style={{ marginTop: 10 }}>
+                Repeat Password
                 <br />
-                <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={this.handleRegisterButton.bind(this)} disabled={loading} /><br />
-                <p>Already have an account? <NavLink to="/login">Login here!</NavLink></p>
-            </Layout>
-        );
-    }
-}
+                <input
+                    type="password"
+                    placeholder="Repeat Password"
+                    name="passwordValidation"
+                    value={passwordValidation}
+                    onChange={handlePasswordValidationChange}
+                />
+            </div>
+            {
+                errorMessage && <><small style={{ color: 'red' }}>{errorMessage}</small><br /></>
+            }
+            {
+                success && <><small style={{ color: 'green' }}>
+                    Registration Successful.
+                    <NavLink exact to="/">
+                        Back to Homepage
+                    </NavLink>
+                </small><br /></>
+            }
+            <br />
+            <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegisterButton} disabled={loading} /><br />
+            <p>Already have an account? <NavLink to="/login">Login here!</NavLink></p>
+        </Layout>
+    );
+};
+
+export default Register;

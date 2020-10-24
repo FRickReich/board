@@ -1,65 +1,44 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageHeader from '../Components/PageHeader';
 import axios from 'axios';
 
-type MyProps = {};
-type MyState =
+const Main = ({ children }) =>
 {
-    isLoading: boolean,
-    error: string,
-    board: object
-};
+    const [ loading, setLoading ] = useState<boolean>(true);
+    const [ errorMessage, setErrorMessage ] = useState<string>(null);
+    const [ board, setBoard ] = useState<object>(null);
 
-class Main extends Component<MyProps, MyState>
-{
-    constructor(props)
-    {
-        super(props);
-    }
-
-    state = {
-        isLoading: true,
-        error: null,
-        board: null
-    };
-
-    componentDidMount()
-    {
+    useEffect(() => {
         axios.get('http://localhost:3000/api/board/info').then((response) =>
         {
-            this.setState({
-                isLoading: false,
-                board: response.data.board[0]
-            });
+            setBoard(response.data.board[0]);
+            setLoading(false);
+
         }).catch(error =>
         {
-            this.setState({ isLoading: false, error: 'no board created yet.hahh' });
+            setErrorMessage('no board created yet.');
+            setLoading(false);
         });
-    }
+    }, []);
 
-    render = () =>
-    {
-        const { children } = this.props;
-        const { isLoading, board } = this.state;
-
-        return (
-            <div>
-                {
-                    isLoading ? (
-                        <p>loading...</p>
-                    ): (
-                        <>
-                            <PageHeader title={board.title} />
-                            <hr />
-                                { children }
-                            <hr />
-                        </>
+    return(
+        <div>
+            {
+                loading ?
+                (
+                    <p>loading...</p>
+                ): (
+                    <>
+                        <PageHeader title={board['title']} />
+                        <hr />
+                            { children }
+                        <hr />
+                    </>
                     )
-                }
-                <small>Link to <a href="https://github.com/FRickReich/board">sourcecode Repository</a></small>
-            </div>
-        );
-    }
-}
+            }
+            <small>Link to <a href="https://github.com/FRickReich/board">code Repository</a></small>
+        </div>
+    );
+};
 
 export { Main as Layout };

@@ -1,79 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Layout } from '../Layout/Main';
 
-type ComponentProps =
+export const Profile = ({ match }) =>
 {
-    match: any
-};
+    const [ loading, setLoading ] = useState<boolean>(true);
+    const [ userData, setUserData ] = useState<object>(null);
+    const [ errorMessage, setErrorMessage ] = useState<string>(null);
 
-type ComponentStates =
-{
-    isLoading: boolean,
-    userData: object,
-    error: string
-};
-
-class Profile extends Component<ComponentProps, ComponentStates>
-{
-    constructor(props)
-    {
-        super(props);
-    }
-
-    state =
-    {
-        isLoading: true,
-        userData: null,
-        error: null
-    };
-
-    componentDidMount = () =>
-    {
-        const { match } = this.props;
+    useEffect(() => {
         const username : string = match.params.userId.toString();
 
         axios.get(`http://localhost:3000/api/user/get/username/${username}`).then((response: object) =>
         {
-            this.setState({
-                isLoading: false,
-                userData: response['data']['user']
-            });
+            setUserData(response['data']['user']);
+            setLoading(false);
         }).catch(error =>
         {
-            this.setState({ isLoading: false, error: 'user not found' });
+            setErrorMessage('no board created yet.');
+            setLoading(false);
         });
-    }
+    }, []);
 
-    render = () =>
-    {
-        const { match } = this.props;
-        const { isLoading, userData } = this.state;
-
-        return(
-            <Layout>
-            {
-                isLoading && isLoading ?
+    return(
+        <Layout>
+        {
+                loading ?
                 (
                     <p>Loading...</p>
                 )
                 :
                 (
                     <>
-                        <p><b>username:</b> { userData.username }</p>
+                        <p><b>username:</b> { userData['username'] }</p>
                         {
-                            userData.email !== 'hidden' &&
-                            <p><b>email:</b> { userData.email } </p>
+                            userData['email'] !== 'hidden' &&
+                            <p><b>email:</b> { userData['email'] } </p>
                         }
-                        <p><b>member since:</b> { moment(userData.signUpDate).fromNow() }</p>
-                        <p><b>role:</b> { userData.role }</p>
+                        <p><b>member since:</b> { moment(userData['signUpDate']).fromNow() }</p>
+                        <p><b>role:</b> { userData['role'] }</p>
                     </>
                 )
             }
-            </Layout>
-        );
-    }
-}
-
-export { Profile };
+        </Layout>
+    );
+};

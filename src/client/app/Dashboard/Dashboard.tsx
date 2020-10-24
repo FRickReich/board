@@ -1,37 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout } from '../Layout/Main';
 import { getUser } from '../Utils/Common';
 
-type MyProps = {};
-type MyState = {
-    user: any
-};
-
-class Dashboard extends Component<MyProps, MyState>
+const Dashboard = () =>
 {
-    constructor(props)
-    {
-        super(props);
-    }
+    const [ user, setUser ] = useState<any>(null);
 
-    state =
-    {
-        user: getUser()
-    };
+    useEffect(() => {
+        setUser(getUser());
+    }, []);
 
-    render()
-    {
-        const { user } = this.state;
+    return(
+        <Layout>
+            Dashboard...
 
-        return(
-            <Layout>
-                Dashboard...
-                {user.role === "member" && <p>Role: Member</p>}
-                {user.role === "moderator" && <p>Role: Moderator</p>}
-                {user.role === "admin" && <p>Role: Admin</p>}
-            </Layout>
-        );
-    }
-}
+            {
+                user &&
+                <>
+                    {user.role === 'member' && <p>Role: Member</p>}
+                    {user.role === 'moderator' && <p>Role: Moderator</p>}
+                    {user.role === 'admin' && <p>Role: Admin</p>}
+                </>
+            }
+        </Layout>
+    );
+};
 
 export default Dashboard;
