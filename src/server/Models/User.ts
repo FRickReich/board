@@ -47,7 +47,7 @@ const schema: Schema = new Schema({
     },
     profile: UserProfile.schema,
     settings: UserSetting.schema
-}).post('save', () => {
+}, { timestamps: true }).post('save', () => {
     console.log('user profile edited');
 });
 

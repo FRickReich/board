@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getCleanUser } from '../../utils';
+import { getCleanUser } from './../../Utils';
 import jwt from 'jsonwebtoken';
 import User, { IUser } from '../../Models/User';
 

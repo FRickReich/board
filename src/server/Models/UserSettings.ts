@@ -33,6 +33,6 @@ const schema: Schema = new Schema({
         default: true
     }
 
-});
+}, { timestamps: true });
 
 export default mongoose.model<IUserSetting>('UserSetting', schema, 'UserSettings', true);

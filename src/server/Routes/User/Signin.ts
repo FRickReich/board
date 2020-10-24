@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { generateToken, getCleanUser } from '../../utils';
+import { generateToken, getCleanUser } from './../../Utils';
 import User, { IUser } from '../../Models/User';
 
 export const userSinginRoute = (req: Request, res: Response) =>
@@ -15,29 +15,31 @@ export const userSinginRoute = (req: Request, res: Response) =>
             message: 'Username or Password required.'
         });
     }
-
-    User.findOne({ email }, (err: Error, user: IUser) =>
+    else
     {
-        if (err)
+        User.findOne({ email }, (err: Error, user: IUser) =>
         {
-            return res.status(401).json({
-                success: false,
-                error: true,
-                message: 'Error: server error'
-            });
-        }
+            if (err)
+            {
+                return res.status(401).json({
+                    success: false,
+                    error: true,
+                    message: 'Error: server error'
+                });
+            }
 
-        if (!bcrypt.compareSync(password, user.password))
-        {
-            return res.send({
-                success: false,
-                message: 'Error: Invalid'
-            });
-        }
+            if (!bcrypt.compareSync(password, user.password))
+            {
+                return res.send({
+                    success: false,
+                    message: 'Error: Invalid'
+                });
+            }
 
-        const token = generateToken(user);
-        const userObj = getCleanUser(user);
+            const token = generateToken(user);
+            const userObj = getCleanUser(user);
 
-        return res.json({ user: userObj, token });
-    });
+            return res.json({ user: userObj, token });
+        });
+    }
 };

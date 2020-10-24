@@ -23,13 +23,15 @@ const schema: Schema = new Schema({
      */
     userName:
     {
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     trophys:
     {
         type: Array(String)
     }
 
-});
+}, { timestamps: true });
 
 export default mongoose.model<IUserProfile>('UserProfile', schema, 'UserProfiles', true);
