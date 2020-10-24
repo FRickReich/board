@@ -8,6 +8,7 @@ export interface IBoardThread extends Document
     authorId: Schema.Types.ObjectId;
     parent: Schema.Types.ObjectId;
     posts: Schema.Types.ObjectId;
+    slug: string;
 }
 
 const schema: Schema = new Schema({
@@ -25,6 +26,11 @@ const schema: Schema = new Schema({
     {
         type: Schema.Types.ObjectId,
         ref: 'BoardSubCategory'
+    },
+    slug:
+    {
+        type: String,
+        required: true,
     },
     posts:[{ type: Schema.Types.ObjectId, ref: 'BoardPost' }]
 }, { timestamps: true }).post('save', () => {});
