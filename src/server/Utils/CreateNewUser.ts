@@ -1,7 +1,9 @@
+import { profile } from 'console';
 import mongoose from 'mongoose';
 import User, { IUser } from './../Models/User';
 import UserProfile from './../Models/UserProfile';
 import UserSettings from './../Models/UserSettings';
+import { SlugifyString } from './SlugifyString';
 import ObjectId = mongoose.Types.ObjectId;
 
 interface INewUser { email: string; isVerified: boolean; password: string; }
@@ -17,6 +19,7 @@ export const createNewUser = (user : INewUser, userProfile: INewUserProfile, use
     newUser.password = newUser.generateHash(user.password);
     newUser.profile = new UserProfile(userProfile);
     newUser.settings = new UserSettings(userSettings);
+    newUser.slug = SlugifyString(userProfile.userName);
 
     newUser.profile.userName = 'admin';
     newUser.settings.isAdmin = true;
