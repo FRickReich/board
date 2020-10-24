@@ -2,33 +2,62 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../Layout/Main';
 import axios from 'axios';
 import { AdminRoleComponent, GuestRoleComponent, MemberRoleComponent, ModeratorRoleComponent } from '../Utils/RoleComponent';
+import { IndexCategory } from './IndexCategory';
+
+import './Board.scss';
 
 const BoardIndex = () =>
 {
-    const [ boardData, setBoardData ] = useState<any>(null);
-    const [ errorMessage, setErrorMessage ] = useState<object>(null);
+    const [ loading, setLoading ] = useState<boolean>(true);
+    const [ boardData, setBoardData ] = useState<object>(null);
+    const [ errorMessage, setErrorMessage ] = useState<string>(null);
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/board/index').then((response) =>
         {
             setBoardData(response.data.board[0]);
+            setLoading(false);
         }).catch(error =>
         {
-            setErrorMessage({ isLoading: false, error: 'no board created yet.' });
-            console.log(error);
+            setErrorMessage('no board created yet.');
+            setLoading(false);
         });
     }, []);
 
     return(
         <Layout>
             <h2>Board Index</h2>
-
             {
-                boardData &&
-                <>
-                <p>Categories:</p>
-                <ul>
-                    {
+                loading ?
+                (
+                    <div>Loading...</div>
+                )
+                :
+                (
+                    <div className="Board">
+                        {
+                            boardData['categories'].map((category, i: number) =>
+                            {
+                                return (
+                                    <IndexCategory data={ category } />
+                                );
+                            })
+                        }
+                    </div>
+                )
+            }
+
+            <AdminRoleComponent><p>Admin Boards View</p></AdminRoleComponent>
+            <ModeratorRoleComponent><p>Moderator Board View</p></ModeratorRoleComponent>
+            <MemberRoleComponent><p>Member Board View</p></MemberRoleComponent>
+            <GuestRoleComponent><p>Guest Board View</p></GuestRoleComponent>
+        </Layout>
+    );
+};
+
+export { BoardIndex };
+
+/*
                         boardData.categories.map((category, i: number) =>
                         {
                             return (
@@ -81,17 +110,4 @@ const BoardIndex = () =>
                             );
                         })
                     }
-                </ul>
-                <hr/>
-                </>
-            }
-
-            <AdminRoleComponent><p>Admin Boards View</p></AdminRoleComponent>
-            <ModeratorRoleComponent><p>Moderator Board View</p></ModeratorRoleComponent>
-            <MemberRoleComponent><p>Member Board View</p></MemberRoleComponent>
-            <GuestRoleComponent><p>Guest Board View</p></GuestRoleComponent>
-        </Layout>
-    );
-};
-
-export { BoardIndex };
+*/
