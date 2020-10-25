@@ -101,7 +101,7 @@ class App
     {
         this.app.listen(this.servicePort, () =>
         {
-            console.log(`Service '${this.serviceName}' listening at http://localhost:${this.servicePort}`);
+            console.log(`Service listening at http://localhost:${this.servicePort}`);
         });
     }
 }

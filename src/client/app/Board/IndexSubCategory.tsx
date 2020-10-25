@@ -66,7 +66,7 @@ const IndexSubCategory = ({ data }) =>
 
     return(
         <div className="SubCategory">
-            <p><NavLink to={`/board/${data.slug}`}>{ data.title }</NavLink></p> 
+            <p><NavLink to={`/board/${data.slug}`}>{ data.title }</NavLink></p>
             <p>{ data.description && data.description }</p>
             <p>threads: { Counter(data.threads).threads }</p>
             <p>posts: { Counter(data.threads).posts }</p>

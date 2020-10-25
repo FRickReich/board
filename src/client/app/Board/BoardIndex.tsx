@@ -26,7 +26,6 @@ const BoardIndex = () =>
 
     return(
         <Layout>
-            <h2>Board Index</h2>
             {
                 loading ?
                 (
@@ -35,11 +34,12 @@ const BoardIndex = () =>
                 :
                 (
                     <div className="Board">
+                        <h2>Board Index</h2>
                         {
                             boardData['categories'].map((category, i: number) =>
                             {
                                 return (
-                                    <IndexCategory data={ category } />
+                                    <IndexCategory key={i} data={ category } />
                                 );
                             })
                         }

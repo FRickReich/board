@@ -7,6 +7,8 @@ import { userSinginRoute } from './User/Signin';
 import { userVerifyRoute } from './User/Verify';
 import { getBoardInfo } from './Board/GetBoardInfo';
 import { getBoardIndex } from './Board/GetBoardIndex';
+import { getSubCategoryIndex } from './Board/GetSubCategoryIndex';
+import { getThreadIndex } from './Board/GetThreadIndex';
 
 const router = (app: express.Application) =>
 {
@@ -22,6 +24,8 @@ const router = (app: express.Application) =>
     // Board routes
     app.get('/api/board/info', getBoardInfo);
     app.get('/api/board/index', getBoardIndex);
+    app.get('/api/board/subCategory/:slug', getSubCategoryIndex);
+    app.get('/api/board/thread/', getThreadIndex);
 };
 
 export { router };

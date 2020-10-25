@@ -10,10 +10,10 @@ const IndexCategory = ({ data }) =>
             <div>
                     {
                         data.subCategories &&
-                        data.subCategories.map((subCategory, j: number) =>
+                        data.subCategories.map((subCategory, i: number) =>
                         {
                             return(
-                                <IndexSubCategory data={subCategory} />
+                                <IndexSubCategory key={i} data={subCategory} />
                             );
                         })
                     }

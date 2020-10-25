@@ -15,9 +15,8 @@ const PageHeader = ({ history, title }) =>
 
     return(
         <div>
-            <h1>{title}</h1>
             <ul className="header">
-                <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+                <li><NavLink exact activeClassName="active" to="/">{title}</NavLink></li>
                 <li><NavLink exact activeClassName="active" to="/board">Board</NavLink></li>
                 {
                     token ?

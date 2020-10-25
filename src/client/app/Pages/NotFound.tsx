@@ -1,13 +1,13 @@
 import React from 'react';
 import { Layout } from '../Layout/Main';
 
-const Home = () =>
+const NotFound = () =>
 {
     return(
         <Layout>
-            Home...
+            Page not found...
         </Layout>
     );
 };
 
-export { Home };
+export { NotFound };

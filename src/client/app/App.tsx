@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import Login from './Pages/Login';
-import Dashboard from './Dashboard/Dashboard';
-import { Home } from './Pages/Home';
-import { PrivateRoute } from './Utils/PrivateRoute';
-import { PublicRoute } from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
-import Register from './Pages/Register';
-import { Profile } from './Profile/Profile';
-import { BoardIndex } from './Board/BoardIndex';
+import { Routes } from './Routes';
 
 import './App.scss';
 
@@ -43,14 +36,7 @@ export const App = () =>
         <div className="App">
             <BrowserRouter>
                     <div className="content">
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route exact path="/board" component={BoardIndex} />
-                            <PublicRoute path="/register" component={Register} />
-                            <PublicRoute path="/login" component={Login} />
-                            <PrivateRoute path="/dashboard" component={Dashboard} />
-                            <PrivateRoute path="/user/profile/:userId" component={Profile} />
-                        </Switch>
+                        <Routes />
                     </div>
             </BrowserRouter>
         </div>

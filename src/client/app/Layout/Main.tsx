@@ -36,7 +36,10 @@ const Main = ({ children }) =>
                     </>
                     )
             }
-            <small>Link to <a href="https://github.com/FRickReich/board">code Repository</a></small>
+            <small>
+                Link to <a href="https://github.com/FRickReich/board">code Repository</a>
+                <span style={{ float: 'right' }}>© 2020 <a href="https://github.com/FRickReich/">F. Rick Reich</a></span>
+            </small>
         </div>
     );
 };
