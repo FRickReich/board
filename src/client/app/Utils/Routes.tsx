@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Login from './Pages/Login';
-import Dashboard from './Dashboard/Dashboard';
-import { Home } from './Pages/Home';
-import { PrivateRoute } from './Utils/PrivateRoute';
-import { PublicRoute } from './Utils/PublicRoute';
-import Register from './Pages/Register';
-import { Profile } from './Profile/Profile';
-import { BoardIndex } from './Board/BoardIndex';
-import { SubCategoryView } from './Board/SubCategoryView';
-import { NotFound } from './Pages/NotFound';
-import { ThreadView } from './Board/ThreadView';
+import Login from '../Pages/Login/Login';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import { Home } from '../Pages/Home/Home';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+import Register from '../Pages/Register/Register';
+import { Profile } from '../Pages/Profile/Profile';
+import { BoardIndex } from '../Pages/Board/BoardIndex';
+import { SubCategoryView } from '../Board/SubCategoryView';
+import { NotFound } from '../Pages/NotFound/NotFound';
+import { ThreadView } from '../Board/ThreadView';
 
 export const Routes =  () =>
 {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
-import { Routes } from './Routes';
+import { Routes } from './Utils/Routes';
 
 import './App.scss';
 
