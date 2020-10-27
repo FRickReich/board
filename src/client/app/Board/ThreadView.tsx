@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { Layout } from '../Layout/Main';
+import { Layout } from '../Layout/Main/Main';
 import moment from 'moment';
+import { LoadingIndicator } from '../Components/LoadingIndicator/LoadingIndicator';
+import { PostEditor } from './PostEditor';
 
 const ThreadView = () =>
 {
@@ -30,7 +32,7 @@ const ThreadView = () =>
             {
                 loading ?
                 (
-                    <div>Loading...</div>
+                    <LoadingIndicator />
                 )
                 :
                 (
@@ -43,12 +45,12 @@ const ThreadView = () =>
                                 {
                                     return (
                                         <div key={i} id={ post._id.toString() }>
-                                            <div>Author: { post.authorId.profile.userName }</div>
-                                            <div>Body:
+                                            <div><b>Author:</b> { post.authorId.profile.userName }</div>
+                                            <div><b>Body:</b>
                                                 <br />
                                                 <ReactMarkdown children={ post.body } />
                                             </div>
-                                            <div>Posted: { moment.parseZone(post.createdAt).fromNow() }</div>
+                                            <div><b>Posted:</b> { moment.parseZone(post.createdAt).fromNow() }</div>
                                             { post.createdAt !== post.updatedAt && <div>Edited: { moment.parseZone(post.updatedAt).fromNow() } </div> }
                                         </div>
                                     );
@@ -56,10 +58,7 @@ const ThreadView = () =>
                             }
                         </div>
 
-                        <div>
-                            <input type="text" name="body"/>
-                            <button>Post</button>
-                        </div>
+                        <PostEditor />
                     </div>
                 )
             }

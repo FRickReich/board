@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, NavLink } from 'react-router-dom';
-import { Layout } from '../Layout/Main';
+import { Layout } from '../Layout/Main/Main';
 import moment from 'moment';
+import { LoadingIndicator } from '../Components/LoadingIndicator/LoadingIndicator';
 
 const SubCategoryView = () =>
 {
@@ -61,7 +62,7 @@ const SubCategoryView = () =>
             {
                 loading ?
                 (
-                    <div>Loading...</div>
+                    <LoadingIndicator />
                 )
                 :
                 (
