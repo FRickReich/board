@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Menu from '../Menu/Menu';
 import axios from 'axios';
-import { Page } from '../Page/Page';
+import { Menu, Page } from './../index';
 
 const Main = ({ children }) =>
 {

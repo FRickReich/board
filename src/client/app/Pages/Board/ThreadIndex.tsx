@@ -7,7 +7,7 @@ import moment from 'moment';
 import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
 import { PostEditor } from './Components/PostEditor/PostEditor';
 
-const ThreadView = () =>
+const ThreadIndex = () =>
 {
     const { slug, subCategorySlug } = useParams();
 
@@ -66,4 +66,4 @@ const ThreadView = () =>
     );
 };
 
-export { ThreadView };
+export { ThreadIndex };

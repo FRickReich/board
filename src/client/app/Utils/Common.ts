@@ -4,7 +4,7 @@ export const getUser = () =>
 
     if(userStr) return JSON.parse(userStr);
 
-    else return null;
+    return null;
 };
 
 export const getToken = () =>
@@ -18,7 +18,7 @@ export const removeUserSession = () =>
     localStorage.removeItem('user');
 };
 
-export const setUserSession = (token, user) =>
+export const setUserSession = (token: string, user: object) =>
 {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));

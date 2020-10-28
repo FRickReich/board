@@ -53,8 +53,8 @@ const schema: Schema = new Schema({
         type: String,
         required: true,
     }
-}, { timestamps: true }).post('save', () => {
-    console.log('user profile edited');
+}, {
+    timestamps: true
 });
 
 schema.methods.generateHash = (password: string) =>

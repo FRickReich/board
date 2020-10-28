@@ -1,0 +1,10 @@
+export { BoardIndex } from './Board/BoardIndex';
+export { SubCategoryIndex } from './Board/SubCategoryIndex';
+export { ThreadIndex } from './Board/ThreadIndex';
+export { Dashboard } from './Dashboard/Dashboard';
+export { Home } from './Home/Home';
+export { Login } from './Login/Login';
+export { NotFound } from './NotFound/NotFound';
+export { Profile } from './Profile/Profile';
+export { Register } from './Register/Register';
+export { Settings } from './Settings/Settings';

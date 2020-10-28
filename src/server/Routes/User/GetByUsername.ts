@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import User, { IUser } from '../../Models/User';
-// import bcrypt from 'bcrypt';
-// import { generateToken, getCleanUser } from '../../utils';
 
 export interface IUserFound
 {

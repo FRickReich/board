@@ -18,6 +18,8 @@ const schema: Schema = new Schema({
     },
     categories: [{ type: Schema.Types.ObjectId, ref: 'BoardCategory' }],
     adminUser: { type: Schema.Types.ObjectId, ref: 'User' }
-}, { timestamps: true }).post('save', () => {});
+}, {
+    timestamps: true
+});
 
 export default mongoose.model<IBoard>('Board', schema, 'Boards', true);

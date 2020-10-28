@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Layout } from '../../Layout/Main/Main';
-import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
+import { Layout } from '../../Layout/';
+import { LoadingIndicator } from '../../Shared/Components/';
 
 export const Profile = ({ match }) =>
 {

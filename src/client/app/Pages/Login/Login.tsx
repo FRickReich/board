@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { setUserSession } from '../../Utils/Common';
 import axios from 'axios';
-import { Layout } from '../../Layout/Main/Main';
+import { Layout } from '../../Layout/';
 
 export const Login = ({ history }) =>
 {

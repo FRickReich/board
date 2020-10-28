@@ -4,7 +4,6 @@ import User, { IUser } from './../Models/User';
 import UserProfile from './../Models/UserProfile';
 import UserSettings from './../Models/UserSettings';
 import { SlugifyString } from './SlugifyString';
-import ObjectId = mongoose.Types.ObjectId;
 
 interface INewUser { email: string; isVerified: boolean; password: string; }
 interface INewUserProfile { userName: string; }

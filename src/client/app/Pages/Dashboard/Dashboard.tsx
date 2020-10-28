@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout } from '../../Layout/Main/Main';
+import { Layout } from '../../Layout/';
 import { getUser } from '../../Utils/Common';
 
 const Dashboard = () =>
@@ -26,4 +26,4 @@ const Dashboard = () =>
     );
 };
 
-export default Dashboard;
+export { Dashboard };

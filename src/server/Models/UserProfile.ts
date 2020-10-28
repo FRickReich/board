@@ -32,6 +32,8 @@ const schema: Schema = new Schema({
         type: Array(String)
     }
 
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
 
 export default mongoose.model<IUserProfile>('UserProfile', schema, 'UserProfiles', true);

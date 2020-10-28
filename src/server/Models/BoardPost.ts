@@ -26,6 +26,8 @@ const schema: Schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'BoardThread'
     }
-}, { timestamps: true }).post('save', () => {});
+}, {
+    timestamps: true
+});
 
 export default mongoose.model<IBoardPost>('BoardPost', schema, 'BoardPosts', true);

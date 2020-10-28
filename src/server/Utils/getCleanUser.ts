@@ -1,4 +1,6 @@
-export const getCleanUser = (user) => {
+import { IUser } from "../Models/User";
+
+export const getCleanUser = (user: IUser) => {
     if (!user) return null;
 
     return {

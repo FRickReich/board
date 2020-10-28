@@ -5,7 +5,7 @@ import { Layout } from '../../Layout/Main/Main';
 import moment from 'moment';
 import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
 
-const SubCategoryView = () =>
+const SubCategoryIndex = () =>
 {
     const { slug } = useParams();
 
@@ -95,21 +95,4 @@ const SubCategoryView = () =>
     );
 };
 
-export { SubCategoryView };
-
-/*
-<div className="SubCategory">
-            <p><NavLink to={`/board/${data.slug}`}>{ data.title }</NavLink></p> 
-            <p>{ data.description && data.description }</p>
-            <p>threads: { Counter(data.threads).threads }</p>
-            <p>posts: { Counter(data.threads).posts }</p>
-            <div>
-                <b>Newest:</b>
-                <p>by <NavLink to={`/user/${newestPost(data.threads).user.slug}`}>{ newestPost(data.threads).user.name }</NavLink></p>
-                <p>in <NavLink to={`/board/${data.slug}/${newestPost(data.threads).thread.slug}#${newestPost(data.threads).post.id}`}>{ newestPost(data.threads).thread.title }</NavLink></p>
-                <p>{ moment.parseZone(newestPost(data.threads).post.date).fromNow() }</p>
-            </div>
-
-        </div>
-
-*/
+export { SubCategoryIndex };

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import { IUser } from '../Models/User';
 
-export const generateToken = (user) => {
+export const generateToken = (user :IUser) => {
     if (!user) return null;
 
     const u = {

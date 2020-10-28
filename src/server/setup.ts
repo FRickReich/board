@@ -9,9 +9,9 @@ import { SlugifyString } from './Utils/SlugifyString';
 
 const initialSetup = () =>
 {
-    Board.countDocuments(async (err, amount) =>
+    Board.countDocuments(async (err: Error, amount: number) =>
     {
-        if(amount === 0 )
+        if(amount === 0)
         {
             createNewUser(
                 { email: 'admin@example.com', isVerified: true, password: 'admin' },
@@ -54,25 +54,8 @@ const initialSetup = () =>
                     newThread.save();
                     newPost.save();
                     newBoard.save().then(savedBoard => console.log(savedBoard.categories));
-                });
-
-    // newBoard
-    //     .save()
-    //     .then(savedBoard => callback(savedBoard))
-    //     .catch(err => new Error(err));
-
-            // createNewUser(
-            //     { email: 'admin@example.com', isVerified: true, password: 'admin' },
-            //     { userName: 'admin' },
-            //     { isAdmin: true, isModerator: false, isMember: false }, (newUser) =>
-            // {
-            //     createNewBoard({ title: 'My Board', adminUser: newUser._id }, (newBoard) =>
-            //     createNewCategory({ title: 'General Discussion', parent: newBoard._id}, (newCategory) =>
-            //     createNewSubCategory({ title: 'Off-Topic Discussion', parent: newCategory._id}, () =>
-            //     {
-            //         console.log('New board created, you can log in via email: admin@example.com & password: admin');
-            //     })));
-            // });
+                }
+            );
         }
     });
 };
