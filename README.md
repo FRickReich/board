@@ -5,42 +5,10 @@ A Message Board build from the ground up, based on F. Rick Reich's Assetory MERN
 
 Frontend: React, Backend: NodeJS, written in TypeScript.
 
-## Components
-
-### Pages
-- Home
-- Dashboard
-- Board
-- SubCategory
-- Thread
-- Dashboard
-- Profile
-- Settings
-- Login
-- Register
-- NotFound
-
-### Layout
-- Main as Layout
-- Menu
-- Page
-
-### Components
-- Login
-- Register
-- Category
-- SubCategory
-- Thread
-- Post
-- PostEditor
-- LoadingIndicator
-
-### Utils
-- Routes
-- Common
-- PrivateRoute
-- PublicRoute
-- RoleComponent
+## ToDo:
+- Dockerize application
+- Create template-driven component views
+- Add GitHub-Project for better overview
 
 ## License
 Copyright (c) 2020 F. Rick Reich. Licensed under the terms of the MIT license.
