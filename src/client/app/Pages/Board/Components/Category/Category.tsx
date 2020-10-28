@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { IndexSubCategory } from './IndexSubCategory';
+import { IndexSubCategory } from '../SubCategory/SubCategory';
 
 const IndexCategory = ({ data }) =>
 {

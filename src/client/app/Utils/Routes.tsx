@@ -8,9 +8,9 @@ import { PublicRoute } from './PublicRoute';
 import Register from '../Pages/Register/Register';
 import { Profile } from '../Pages/Profile/Profile';
 import { BoardIndex } from '../Pages/Board/BoardIndex';
-import { SubCategoryView } from '../Board/SubCategoryView';
+import { SubCategoryView } from '../Pages/Board/SubCategoryIndex';
 import { NotFound } from '../Pages/NotFound/NotFound';
-import { ThreadView } from '../Board/ThreadView';
+import { ThreadView } from '../Pages/Board/ThreadIndex';
 
 export const Routes =  () =>
 {

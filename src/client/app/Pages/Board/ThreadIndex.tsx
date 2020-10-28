@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, NavLink } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { Layout } from '../Layout/Main/Main';
+import { Layout } from '../../Layout/Main/Main';
 import moment from 'moment';
-import { LoadingIndicator } from '../Components/LoadingIndicator/LoadingIndicator';
-import { PostEditor } from './PostEditor';
+import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
+import { PostEditor } from './Components/PostEditor/PostEditor';
 
 const ThreadView = () =>
 {

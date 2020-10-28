@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Layout } from '../../Layout/Main/Main';
-import { LoadingIndicator } from '../../Components/LoadingIndicator/LoadingIndicator';
+import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
 
 export const Profile = ({ match }) =>
 {

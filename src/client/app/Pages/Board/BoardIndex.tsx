@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../../Layout/Main/Main';
 import axios from 'axios';
 import { AdminRoleComponent, GuestRoleComponent, MemberRoleComponent, ModeratorRoleComponent } from '../../Utils/RoleComponent';
-import { IndexCategory } from '../../Board/IndexCategory';
+import { IndexCategory } from './Components/Category/Category';
 
 import './Board.scss';
-import { LoadingIndicator } from '../../Components/LoadingIndicator/LoadingIndicator';
+import { LoadingIndicator } from '../../Shared/Components/LoadingIndicator/LoadingIndicator';
 
 const BoardIndex = () =>
 {
