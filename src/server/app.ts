@@ -20,11 +20,11 @@ class App
     constructor()
     {
         this.app = express();
-        this.serviceName = process.env.SERVICE_NAME || 'template';
-        this.servicePort = Number(process.env.SERVICE_PORT) || 3000;
-        this.buildPath = process.env.BUILD_PATH || './../build/';
-        this.database = process.env.DB_PATH || 'mongodb://board:test@207.154.219.225:27017/board';
-        this.jwtSecret = process.env.JWT_SECRET || 'secret';
+        this.serviceName = process.env.SERVICE_NAME;
+        this.servicePort = Number(process.env.SERVICE_PORT);
+        this.buildPath = process.env.BUILD_PATH;
+        this.database = process.env.DB_PATH;
+        this.jwtSecret = process.env.JWT_SECRET;
     }
 
     init = () =>
